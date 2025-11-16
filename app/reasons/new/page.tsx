@@ -9,12 +9,12 @@ export default function NewReason() {
 
   const handleCreate = async (data: any) => {
     await createReason(data);
-    router.push("/reasons");
+    router.push("/");
   };
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Create Reason</h1>
+    <div className="p-8 flex flex-col max-w-3xl mx-auto min-h-screen items-center justify-center">
+      <h1 className="text-2xl font-bold mb-4"> افزودن دلیل جدید</h1>
       <ReasonForm onSubmit={handleCreate} />
     </div>
   );
