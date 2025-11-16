@@ -1,12 +1,36 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { getReasons } from "@/lib/reasons";
 import Link from "next/link";
 
-export default async function ReasonsPage() {
-  const reasons = await getReasons();
+export default function ReasonsPage() {
+  const [reasons, setReasons] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchReasons = async () => {
+    setLoading(true);
+    const data = await getReasons();
+    setReasons(data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchReasons();
+  }, []);
+
+  if (loading) return <div className="p-8 flex justify-center items-center">
+      <img
+        src="/loading.gif" 
+        alt="Loading..."
+        className="w-20 h-20"
+      />
+    </div>;
+
   return (
     <div className="p-8 max-w-3xl mx-auto">
       <div className="flex justify-between mt-5">
-        <h1 className="text-3xl font-bold mb-4 font-myfont "> یادآوری ✨</h1>
+        <h1 className="text-3xl font-bold mb-4 font-myfont"> یادآوری ✨</h1>
         <Link
           href="/reasons/new"
           className="bg-emerald-500 cursor-pointer text-white px-4 py-2 rounded inline-block mb-4"
@@ -15,9 +39,8 @@ export default async function ReasonsPage() {
         </Link>
       </div>
 
-    
       <ul className="space-y-4 fade-in">
-        {reasons.map((r:any, i:number) => (
+        {reasons.map((r: any, i: number) => (
           <li
             key={r.id}
             className="border w-full overflow-hidden border-purple-200 bg-white/40 backdrop-blur-md p-4 rounded-2xl shadow-sm hover:shadow-lg transition"
@@ -32,7 +55,9 @@ export default async function ReasonsPage() {
                   <p className="text-xs w-fit font-semibold text-purple-700">
                     {r.description}
                   </p>
-                  <p className="text-[8px] text-purple-500">{r.reason === "بد" ? "❌" : ""}</p>
+                  <p className="text-[8px] text-purple-500">
+                    {r.reason === "بد" ? "❌" : ""}
+                  </p>
                 </div>
               </div>
             </Link>
