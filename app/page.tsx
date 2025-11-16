@@ -62,7 +62,7 @@ export default function ReasonsPage() {
                     {r.description}
                   </p>
                   <p className="text-[8px] text-purple-500">
-                    {r.reason === "بد" ? "❌" : ""}
+                    {r.reason === "بد" ? "❌" : "✅"}
                   </p>
                 </div>
               </div>
