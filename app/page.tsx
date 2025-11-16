@@ -6,7 +6,7 @@ export default async function ReasonsPage() {
   return (
     <div className="p-8 max-w-3xl mx-auto">
       <div className="flex justify-between mt-5">
-        <h1 className="text-3xl font-bold mb-4 font-myfont "> یادآوری</h1>
+        <h1 className="text-3xl font-bold mb-4 font-myfont "> یادآوری ✨</h1>
         <Link
           href="/reasons/new"
           className="bg-emerald-500 cursor-pointer text-white px-4 py-2 rounded inline-block mb-4"
